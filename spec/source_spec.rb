@@ -15,8 +15,8 @@ describe "Source" do
       @s.cud_queue.should be_nil
       @s.app_id.should == @s_params[:app_id]
       @s.user_id.should == @s_params[:user_id]
-      @s.sync_type.should == :incremental
-      @s.partition_type.should == :user
+      @s.sync_type.should == "incremental" #:incremental
+      @s.partition_type.should == "user"   #:user
       @s.poll_interval.should == 300
 
       @s1 = Source.load(@s.id,@s_params)
@@ -64,9 +64,9 @@ describe "Source" do
 
     it "should create source with default read/write queue" do
       @s.delete
-      @s_fields[:queue] = :default
-      @s_fields[:query_queue] = :query
-      @s_fields[:cud_queue] = :cud
+      @s_fields[:queue] = 'default' #:default
+      @s_fields[:query_queue] = 'query' #:query
+      @s_fields[:cud_queue] = 'cud' #:cud
       Source.create(@s_fields,@s_params)
       s = Source.load(@s_fields[:name],@s_params)
       s.queue.should == 'default'
@@ -91,4 +91,4 @@ describe "Source" do
       Source.update_associations([@s.name,@s1.name, @s2.name])
     end
   end  
-end
+end 

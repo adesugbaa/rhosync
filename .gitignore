@@ -10,3 +10,6 @@ doc/protocol.html
 *.rdb
 nbproject/
 examples/simple/settings/apple_push_cert.pem
+*.bak
+.buildpath
+.project

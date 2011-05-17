@@ -13,12 +13,11 @@ describe "Server" do
       require File.join(get_testapp_path,test_app_name)
       Rhosync.bootstrap(get_testapp_path) do |rhosync|
         rhosync.vendor_directory = File.join(rhosync.base_directory,'..','..','..','vendor')
-      end
-      Rhosync::Server.set( 
-        :environment => :test,
-        :run => false,
-        :secret => "secure!"
-      )
+      end      
+      Rhosync::Server.set :environment, :test
+      Rhosync::Server.set :run, false
+      Rhosync::Server.set :secret, "secure!"      
+
       Rhosync::Server.use Rack::Static, :urls => ["/data"], 
         :root =>  File.expand_path(File.join(File.dirname(__FILE__),'..','apps','rhotestapp'))
     end
